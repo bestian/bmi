@@ -11,9 +11,10 @@
       </tr>
     </table>
     <form>
-      身高<input type="number" name="height" v-model="height" /> cm
+      <h3>快看看自己的BMI是否在理想範圍吧!</h3>
+      我的身高<input type="number" name="height" v-model="height" /> cm
       <br/>
-      體重<input type="number" name="height" v-model="weight"/> kg
+      我的體重<input type="number" name="height" v-model="weight"/> kg
     </form>
     <div class="resault">
       BMI: {{ bmi(height, weight) | showBMI }}
