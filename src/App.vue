@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <nav>
+      <router-link to="/">目前成果</router-link>
+      <router-link to="/e">範例檔</router-link>
+    </nav>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: 'App'
 }
 </script>
 
@@ -22,6 +22,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+nav a {
+  margin: 0.2em 1em;
+  text-decoration: none;
+}
+
+.router-link-exact-active.router-link-active {
+  font-size: 1.5em;
+  color: blue !important;
 }
 
 @media screen and (min-width: 421px) {
