@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">目前成果</router-link>
+      <router-link to="/">起點</router-link>
+      <router-link to="/h">Hans</router-link>
+      <router-link to="/j">Jinlun</router-link>
       <router-link to="/e">範例檔</router-link>
     </nav>
     <router-view/>
@@ -16,6 +18,12 @@ export default {
 </script>
 
 <style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,6 +32,9 @@ export default {
   color: #2c3e50;
 }
 
+nav {
+  background-color: #cfc;
+}
 nav a {
   margin: 0.2em 1em;
   text-decoration: none;
