@@ -4,7 +4,7 @@
     <h3>BMI值計算公式: BMI = 體重(公斤) / 身高<sup>2</sup>(公尺<sup>2</sup>)</h3>
     <table border="1">
       <tr>
-        <th v-for = "(b, idx) in bmiList" :key="b"> {{ bmiList[idx-1] || 0 }} ≦ BMI值 {{ b | showB }}</th>
+        <th v-for = "(b, idx) in bmiList" :key="b"> {{ bmiList[idx-1] || 0 }} ≦ <br/> BMI值 <br/> {{ b | showB }}</th>
       </tr>
       <tr>
         <td v-for = "(r, idx) in resList" :key="r" :style="{'background-color': colorList[idx]} "> {{ r }}</td>
@@ -81,6 +81,10 @@ export default {
 table {
   display: inline-block;
   border-collapse: collapse;
+}
+
+td {
+  width: 18vw
 }
 
 </style>
