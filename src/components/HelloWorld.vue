@@ -1,58 +1,86 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <h1>BMI 計算機</h1>
+    <h3>BMI值計算公式: BMI = 體重(公斤) / 身高<sup>2</sup>(公尺<sup>2</sup>)</h3>
+    <table border="1">
+      <tr>
+        <th v-for = "(b, idx) in bmiList" :key="b"> {{ bmiList[idx-1] || 0 }} ≦ BMI值 {{ b | showB }}</th>
+      </tr>
+      <tr>
+        <td v-for = "(r, idx) in resList" :key="r" :style="{'background-color': colorList[idx]} "> {{ r }}</td>
+      </tr>
+    </table>
+    <form>
+      身高<input type="number" name="height" v-model="height" /> cm
+      <br/>
+      體重<input type="number" name="height" v-model="weight"/> kg
+    </form>
+    <div class="resault">
+      BMI: {{ bmi(height, weight) | showBMI }}
+      <br/>
+      結果: {{ bmi(height, weight) | showRES }}
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'BMI',
+  data () {
+    return {
+      height: 160,
+      weight: 55,
+      bmiList: [18.5, 24, 27, 30, 35, Infinity],
+      resList: ['過輕', '正常', '過重', '輕度肥胖', '中度肥胖', '重度肥胖'],
+      colorList: ['#ccf', '#cfc', '#fcc', '#faa', '#f66', '#f00']
+    }
+  },
+  methods: {
+    bmi (height, weight) {
+      let h = Number(height) / 100
+      let w = Number(weight) 
+      return w / (h ** 2) // 對的公式
+    }
+  },
+  filters: {
+    showB: function (num) {
+      if (num < Infinity) {
+        return '< ' + num
+      } else {
+        return ''
+      }
+    },
+    showBMI: function (num) {
+      return Math.floor(num * 100 + 0.5) / 100
+    },
+    showRES: function (num) {
+      if (num < 18.5) {
+        return '過輕'
+      }
+      if (num < 24) {
+        return '正常'
+      }
+      if (num < 27) {
+        return '過重'
+      }
+      if (num < 30) {
+        return '輕度肥胖'
+      }
+      if (num < 35) {
+        return '中度肥胖'
+      }
+      return '重度肥胖'
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
+
+table {
   display: inline-block;
-  margin: 0 10px;
+  border-collapse: collapse;
 }
-a {
-  color: #42b983;
-}
+
 </style>
