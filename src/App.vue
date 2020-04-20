@@ -7,6 +7,9 @@
       <router-link to="/e">範例檔</router-link>
     </nav>
     <router-view/>
+    <footer>
+      <a href = "http://www.github.com/bestian/bmi" target="_blank">原始碼</a>
+    </footer>
   </div>
 </template>
 
@@ -32,12 +35,24 @@ html, body {
   color: #2c3e50;
 }
 
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 nav {
   background-color: #cfc;
 }
+
 nav a {
   margin: 0.2em 1em;
-  text-decoration: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: .5em;
 }
 
 .router-link-exact-active.router-link-active {
