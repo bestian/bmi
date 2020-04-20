@@ -13,6 +13,14 @@
       <br/>
       結果: {{ bmi(height, weight) | showRES }}
     </div>
+    <table border="1">
+      <tr>
+        <th v-for = "(b, idx) in bmiList" :key="b"> {{ bmiList[idx-1] || 0 }} ≦ <br/> BMI值 <br/> {{ b | showUpper }}</th>
+      </tr>
+      <tr>
+        <td v-for = "(r, idx) in resList" :key="r" :style="{'background-color': colorList[idx]} "> {{ r }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -22,7 +30,10 @@ export default {
   data () {
     return {
       height: 160,
-      weight: 55
+      weight: 55,
+      bmiList: [18.5, 24, 27, 30, 35, Infinity],
+      resList: ['過輕', '正常', '過重', '輕度肥胖', '中度肥胖', '重度肥胖'],
+      colorList: ['#ccf', '#cfc', '#fcc', '#faa', '#f66', '#f00']
     }
   },
   methods: {
@@ -34,6 +45,13 @@ export default {
     }
   },
   filters: {
+    showUpper (num) {
+      if (num < Infinity) {
+        return '< ' + num
+      } else {
+        return ''
+      }
+    },
     showBMI (num) {
       let ans = Math.round(num)
       /*  Q2: 如果要改成小數點後就四捨五入，要改哪裡?  */ 
@@ -64,7 +82,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+table {
+  display: inline-block;
+  border-collapse: collapse;
+}
+td {
+  width: 14vw;
+}
 input {
   font-size: 22px;
 }
