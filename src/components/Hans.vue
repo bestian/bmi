@@ -4,9 +4,9 @@
     <h3>BMI值計算公式: BMI = 體重(公斤) / 身高<sup>2</sup>(公尺<sup>2</sup>)</h3>
     <form>
       <h3>快看看自己的BMI是否在理想範圍吧!</h3>
-      我的身高<input type="number" name="height" v-model="height" /> cm
+      我的身高<input type="number" min="0" name="height" v-model="height" /> cm
       <br/>
-      我的體重<input type="number" name="height" v-model="weight" /> kg
+      我的體重<input type="number" min="0" name="height" v-model="weight" /> kg
     </form>
     <div class="resault">
       BMI: {{ bmi(height, weight) | showBMI }}
@@ -29,17 +29,14 @@ export default {
     bmi (height, weight) {
       let h = height / 100
       let w = weight 
-      console.log(h) 
-      console.log(w)
-      let ans = null   // Q1: 對的bmi公式是什麼? 
-      console.log(ans)
+      let ans = w / h**2   // Q1: 對的bmi公式是什麼? 
       return ans 
     }
   },
   filters: {
     showBMI (num) {
-      let ans = Math.floor(num * 1000 + 0.5) / 1000
-      /*  Q2: 如果要改成小數點後兩位就四捨五入，要改哪裡?  */ 
+      let ans = Math.round(num)
+      /*  Q2: 如果要改成小數點後就四捨五入，要改哪裡?  */ 
       return ans
     },
     showRES (num) {
@@ -59,7 +56,7 @@ export default {
       if (num < 35) {
         return '中度肥胖'
       }
-      return ''    // Q3: 如果程式執行到這裡，表示num >= 35，所 以最後應該傳回什麼字串?
+      return '重度肥胖'    // Q3: 如果程式執行到這裡，表示num >= 35，所 以最後應該傳回什麼字串?
     }
   }
 }
