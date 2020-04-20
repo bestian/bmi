@@ -38,7 +38,7 @@ export default {
   },
   filters: {
     showBMI (num) {
-      let ans = Math.floor(num * 1000 + 0.5) / 1000
+      let ans = Math.round(num * 1000) / 1000
       /*  Q2: 如果要改成小數點後兩位就四捨五入，要改哪裡?  */ 
       return ans
     },

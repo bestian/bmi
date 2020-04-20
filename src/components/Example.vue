@@ -4,9 +4,9 @@
     <h3>BMI值計算公式: BMI = 體重(公斤) / 身高<sup>2</sup>(公尺<sup>2</sup>)</h3>
     <form>
       <h3>快看看自己的BMI是否在理想範圍吧!</h3>
-      我的身高<input type="number" name="height" v-model="height" v-autofocus/> cm
+      我的身高<input type="number" min="0" name="height" v-model="height" v-autofocus/> cm
       <br/>
-      我的體重<input type="number" name="height" v-model="weight" /> kg
+      我的體重<input type="number" min="0" name="height" v-model="weight" /> kg
     </form>
     <div class="resault">
       BMI: {{ bmi(height, weight) | showBMI }}
@@ -65,7 +65,7 @@ export default {
       }
     },
     showBMI (num) {
-      let ans = Math.floor(num * 100 + 0.5) / 100
+      let ans = Math.round(num * 100) / 100
       return ans
     }
   }
