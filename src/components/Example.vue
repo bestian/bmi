@@ -46,7 +46,7 @@ export default {
       let ans = w / (h ** 2) // 對的公式
       return ans
     },
-    getIndex: function (num) {
+    getIndex (num) {
       console.log(num)
       for (let i = 0; i < this.bmiList.length; i++) {
         console.log(this.bmiList[i])
@@ -57,14 +57,14 @@ export default {
     }
   },
   filters: {
-    showUpper: function (num) {
+    showUpper (num) {
       if (num < Infinity) {
         return '< ' + num
       } else {
         return ''
       }
     },
-    showBMI: function (num) {
+    showBMI (num) {
       let ans = Math.floor(num * 100 + 0.5) / 100
       return ans
     }
