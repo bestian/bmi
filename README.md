@@ -15,6 +15,5 @@
 ```npm run serve```
 
 
-## 發布
-(owner only)
+## 發布(只有擁有者可以)
 ``` sh deploy.sh ```
