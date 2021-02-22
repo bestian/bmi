@@ -7,6 +7,7 @@ import Example from '@/components/Example'
 import App from './App.vue'
 import VueGtag from 'vue-gtag'
 import autofocus from 'vue-autofocus-directive'
+import './registerServiceWorker'
 
 Vue.directive('autofocus', autofocus)
 
